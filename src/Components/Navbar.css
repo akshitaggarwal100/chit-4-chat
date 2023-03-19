@@ -1,0 +1,86 @@
+.disable {
+    display: none;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+    padding: 0 1rem;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.four {
+    background: linear-gradient(135deg, #ffb347, #ffcc33);
+    /* background: linear-gradient(to right, #4568DC, #B06AB3); */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2rem;
+}
+
+.sideControl {
+    display: flex;
+    justify-content: center;
+}
+
+.sideControlBtn {
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.themeBtn {
+    color: white;
+    border: none;
+}
+
+.menuBtn {
+    margin-left: 0.8rem;
+    border: 2px solid #ffb347;
+    background-color: transparent;
+}
+
+.menu {
+    cursor: pointer;
+    position: fixed;
+    top: 3.3rem;
+    right: 1rem;
+    background-color: transparent;
+    border: 2px solid #ffb347;
+    border-radius: 7px;
+    font-size: 0.96rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    width: 5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dmb {
+    color: white;
+}
+
+.dtb {
+    background: linear-gradient(135deg, #005C97, #363795);
+}
+
+.ltb {
+    background: linear-gradient(135deg, #ffb347, #ffcc33);
+}
+
+.sideControlBtn * {
+    width: 100%;
+    height: 100%;
+}

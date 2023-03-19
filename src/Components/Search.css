@@ -1,0 +1,111 @@
+.search {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.defaultPhoto {
+    width: 29px;
+    aspect-ratio: 3 / 4;
+    border-radius: 5px;
+    margin-right: 0.8rem;
+}
+
+.defaultPhoto * {
+    width: 100%;
+    height: 100%;
+}
+
+.searchResults {
+    position: absolute;
+    top: 4rem;
+    height: 21rem;
+    width: 100%;
+    border-radius: 8px;
+    padding: 1rem 1rem 0;
+    overflow-y: scroll;
+}
+
+.noResults {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchResults::-webkit-scrollbar {
+    display: none;
+}
+
+.searchResult {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    transition: 0.3s background-color, 0.1s color;
+}
+
+.searchResultInfo {
+    display: flex;
+    align-items: center;
+}
+
+.addContactBtn {
+    background-color: transparent;
+    border: 0;
+    width: 1.9rem;
+    height: 1.9rem;
+    cursor: pointer;
+}
+
+.addContactBtn * {
+    width: 100%;
+    height: 100%;
+}
+
+.searchBar {
+    width: 100%;
+    height: 3rem;
+    /* margin-bottom: 1rem; */
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: 1fr 3rem;
+    grid-template-rows: 3rem;
+    justify-items: center;
+    transition: 0.3s background-color;
+}
+
+.searchInput {
+    height: 100%;
+    width: 100%;
+    border: 0;
+    padding: 0 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    background-color: transparent;
+    outline: none;
+    transition: 0.2s color;
+}
+
+.searchInput::placeholder {
+    font-size: 1rem;
+}
+
+.searchBtn {
+    width: 2.1rem;
+    border: 0;
+    background-color: transparent;
+    transition: 0.3s color;
+}
+
+.searchBtn * {
+    width: 100%;
+    height: 100%;
+}
