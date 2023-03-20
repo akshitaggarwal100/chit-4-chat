@@ -46,15 +46,18 @@ export default function Search() {
         return output
     }
 
-    async function addContact(id) {
-        const temp = await getDoc(doc(db, `users/${currentUser.uid}/contacts`, id))
+    async function addContact(contactID) {
+        const temp = await getDoc(doc(db, `users/${currentUser.uid}/contacts`, contactID))
 
         if (temp.exists()) { }
 
         else {
-            const contactObj = { id, chatID: IDgenerator() }
+            const chatID = IDgenerator()
+            const contactForCU = { id: contactID, chatID: chatID }
+            const contactForContact = { id: currentUser.uid, chatID: chatID }
 
-            await setDoc(doc(db, `users/${currentUser.uid}/contacts`, id), contactObj)
+            await setDoc(doc(db, `users/${currentUser.uid}/contacts`, contactID), contactForCU)
+            setDoc(doc(db, `users/${contactID}/contacts`, currentUser.uid), contactForContact)
         }
     }
 

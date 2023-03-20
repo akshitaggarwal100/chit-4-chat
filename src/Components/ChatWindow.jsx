@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './ChatWindow.css'
 import { BiMessageSquareDetail } from 'react-icons/bi'
+import { BsFillFilePersonFill } from 'react-icons/bs'
 import { useThemeContext } from '../ThemeContext'
 import { useOtherPersonContext } from '../OtherPersonContext'
 import { collection, getDocs } from 'firebase/firestore'
@@ -15,26 +16,25 @@ export default function ChatWindow() {
       const snapshot = await getDocs(collection(db, `${other.chatID}`))
       setMessages(snapshot)
     })()
-  })
+  }, [])
 
   const [messages, setMessages] = useState([])
 
   return (
     <>
       {
-        
         other.chatID !== 0 ?
           <section className={`chatWindow ${dark ? 'darkSection' : 'lightSection'}`}>
-            {/* <h1>{other.data.name}</h1> */}
-
-            <div className=''>
-              contact.photoURL ?
-              <img className='userPhoto' src={contact.photoURL} />
-              :
-              <div className='defaultPhoto'>
-                <BsFillFilePersonFill />
-              </div>
-              <h1></h1>
+            <div className='contactHeader'>
+              {
+                other.data.photoURL ?
+                  <img className='contactPhoto' src={other.data.photoURL} />
+                  :
+                  <div className='defaultContactPhoto'>
+                    <BsFillFilePersonFill />
+                  </div>
+              }
+              <h1>{other.data.name}</h1>
             </div>
 
             {messages.docs.map((message) => {
@@ -47,6 +47,7 @@ export default function ChatWindow() {
             <BiMessageSquareDetail className='messageIcon' />
             <p>C4C Messaging app by Akshit Aggarwal</p>
           </div>
+
       }
     </>
   )
