@@ -5,15 +5,13 @@ import { GoSearch } from 'react-icons/go'
 import { RxCross1 } from 'react-icons/rx'
 import { BsFillFilePersonFill } from 'react-icons/bs'
 import { useThemeContext } from '../ThemeContext'
-import { useOtherPersonContext } from '../OtherPersonContext'
 import { useUserDataContext } from '../AuthContext'
 import { motion, AnimatePresence } from 'framer-motion'
-import { addDoc, getDoc, getDocs, where, collection, doc, query, setDoc } from 'firebase/firestore'
+import { getDoc, getDocs, where, collection, doc, query, setDoc } from 'firebase/firestore'
 import { db } from '../Firebase'
 
 export default function Search() {
     const { dark, colors } = useThemeContext()
-    const { changeOther } = useOtherPersonContext()
     const { currentUser } = useUserDataContext()
 
     const [searchQuery, setSearchQuery] = useState('')
@@ -59,12 +57,6 @@ export default function Search() {
             await setDoc(doc(db, `users/${currentUser.uid}/contacts`, contactID), contactForCU)
             setDoc(doc(db, `users/${contactID}/contacts`, currentUser.uid), contactForContact)
         }
-    }
-
-    async function changeActiveContact(data) {
-        // changeOther(contact)
-        const snapshot = await addDoc(collection(doc(db, 'users', currentUser.uid), 'contacts'), { name: data.name, id: data.id, photoURL: data.photoURL })
-        console.log(snapshot)
     }
 
     return (

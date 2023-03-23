@@ -1,0 +1,19 @@
+.messageBox {
+    display: flex;
+    flex-direction: row;
+}
+
+.messageInput {
+    background-color: transparent;
+    border: 0;
+}
+
+.sendBtn {
+    background-color: transparent;
+    border: 0;
+}
+
+.sendBtn * {
+    width: 100%;
+    height: 100%;
+}

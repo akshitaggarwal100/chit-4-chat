@@ -1,13 +1,18 @@
 .contacts {
     width: 100%;
     height: calc(100svh - 5rem);
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 5rem 1fr;
     padding: 1rem;
     border-radius: 8px;
     transition: 0.3s background-color, 0.2s color;
+}
+
+.contactsList {
+    height: 100%;
+    width: 100%;
+    overflow-y: overlay;
 }
 
 .contacts::-webkit-scrollbar-thumb {
