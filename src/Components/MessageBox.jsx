@@ -14,8 +14,17 @@ export default function MessageBox() {
 
     function handleMessageSend(e) {
         e.preventDefault()
-        const messageObj = { from: currentUser.uid, text: e.target.message.value }
+        // const dateObj = new Date()
+        // const date = `${dateObj.getDate()}-${dateObj.getMonth()}-${dateObj.getFullYear()}`
+        // const time = `${dateObj.getHours()}Hr ${dateObj.getMinutes()}Min ${dateObj.getSeconds()}Sec`
+        const messageObj = {
+            from: currentUser.uid,
+            text: e.target.message.value,
+            // time: firebase.database.ServerValue.TIMESTAMP,
+            date: new Date()
+        }
         addDoc(collection(db, `${other.chatID}`), messageObj)
+        e.target.message.value = ''
     }
 
     return (
