@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { BsFillFilePersonFill } from 'react-icons/bs'
 import { db } from '../Firebase'
-import { getDoc, getDocs, collection, doc, deleteDoc } from 'firebase/firestore'
+import { getDoc, getDocs, collection, doc, deleteDoc, onSnapshot } from 'firebase/firestore'
 import { useUserDataContext } from '../AuthContext'
 import { useOtherPersonContext } from '../OtherPersonContext'
 import { useThemeContext } from '../ThemeContext'
@@ -10,14 +10,13 @@ export default function ContactList() {
     const [contacts, setContacts] = useState([])
     const { other, changeOther } = useOtherPersonContext()
     const { currentUser } = useUserDataContext()
-    const {dark} = useThemeContext()
+    const { dark } = useThemeContext()
 
     useEffect(() => {
-        (async () => {
+        // (async () => {
 
-            // fetching all contacts
-            const snapshot = await getDocs(collection(db, `users/${currentUser.uid}/contacts`))
-
+        // fetching all contacts
+        const unsubscribe = onSnapshot(collection(db, `users/${currentUser.uid}/contacts`), async (snapshot) => {
             let contactsArray = []
             for (let i = 0; i < snapshot.docs.length; i++) {
 
@@ -39,8 +38,11 @@ export default function ContactList() {
                 }
             }
             setContacts(contactsArray)
+        })
 
-        })()
+        return unsubscribe
+
+        // })()
     }, [])
 
     function changeActiveContact(contact) {
