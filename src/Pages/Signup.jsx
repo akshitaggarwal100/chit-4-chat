@@ -9,7 +9,7 @@ import Navbar from '../Components/Navbar'
 import { useUserDataContext } from '../AuthContext'
 import { useThemeContext } from '../ThemeContext'
 import { db } from '../Firebase'
-import { doc, getDoc, setDoc } from 'firebase/firestore'
+import { doc, getDoc, setDoc, addDoc, deleteDoc, collection } from 'firebase/firestore'
 
 
 export default function Signup() {
@@ -28,7 +28,8 @@ export default function Signup() {
     setLoading(true)
     try {
       const user = await signup(formData.current.email.value, formData.current.password.value)
-      await setDoc(doc(db, 'users', user.user.uid), { id: user.user.uid, name: formData.current.name.value, photoURL: user.user.photoURL })
+      const userObj = { id: user.user.uid, name: formData.current.name.value, photoURL: user.user.photoURL }
+      await setDoc(doc(db, 'users', user.user.uid), userObj)
       navigate('/chat')
     }
     catch (e) {
@@ -48,7 +49,8 @@ export default function Signup() {
       if (document.exists()) { }
 
       else {
-        setDoc(doc(db, 'users', user.user.uid), { id: user.user.uid, name: user.user.displayName, photoURL: user.user.photoURL })
+        const userObj = { id: user.user.uid, name: user.user.displayName, photoURL: user.user.photoURL }
+        await setDoc(doc(db, 'users', user.user.uid), userObj)
       }
 
       navigate('/chat')

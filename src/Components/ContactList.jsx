@@ -12,37 +12,37 @@ export default function ContactList() {
     const { currentUser } = useUserDataContext()
     const { dark } = useThemeContext()
 
+    async function fetchContacts(snapshot) {
+        let contactsArray = []
+        for (let i = 0; i < snapshot.docs.length; i++) {
+
+            // storing the userID of contact
+            const contactID = snapshot.docs[i].id
+
+            // fetching userData of the contact from users collection
+            const contactData = await getDoc(doc(db, 'users', contactID))
+
+            if (contactData.exists()) {
+                const contactObj = {
+                    chatID: snapshot.docs[i].data().chatID,
+                    data: contactData.data()
+                }
+                contactsArray.push(contactObj)
+            }
+            else {
+                await deleteDoc(doc(db, `users/${currentUser.uid}/contacts`, contactID))
+            }
+        }
+        setContacts(contactsArray)
+    }
+
     useEffect(() => {
-        // (async () => {
 
         // fetching all contacts
-        const unsubscribe = onSnapshot(collection(db, `users/${currentUser.uid}/contacts`), async (snapshot) => {
-            let contactsArray = []
-            for (let i = 0; i < snapshot.docs.length; i++) {
-
-                // storing the userID of contact
-                const contactID = snapshot.docs[i].id
-
-                // fetching userData of the contact from users collection
-                const contactData = await getDoc(doc(db, 'users', contactID))
-
-                if (contactData.exists()) {
-                    const contactObj = {
-                        chatID: snapshot.docs[i].data().chatID,
-                        data: contactData.data()
-                    }
-                    contactsArray.push(contactObj)
-                }
-                else {
-                    await deleteDoc(doc(db, `users/${currentUser.uid}/contacts`, contactID))
-                }
-            }
-            setContacts(contactsArray)
-        })
+        const contactsRef = collection(db, `users/${currentUser.uid}/contacts`)
+        const unsubscribe = onSnapshot(contactsRef, fetchContacts)
 
         return unsubscribe
-
-        // })()
     }, [])
 
     function changeActiveContact(contact) {

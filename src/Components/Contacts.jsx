@@ -6,7 +6,7 @@ import ContactList from './ContactList'
 import NoContacts from './NoContacts'
 import './Contacts.css'
 import { db } from '../Firebase'
-import { getDocs, collection, query, limit } from 'firebase/firestore'
+import { collection, query, limit, onSnapshot } from 'firebase/firestore'
 
 export default function Contacts() {
 
@@ -15,14 +15,17 @@ export default function Contacts() {
 
     const [contactsExist, setContactsExist] = useState(false)
 
+    function funcToCheck(snapshot) {
+        snapshot.docs.length > 0 ?
+            setContactsExist(true)
+            :
+            setContactsExist(false)
+    }
+
     useEffect(() => {
-        (async () => {
-            const snapshot = await getDocs(query(collection(db, `users/${currentUser.uid}/contacts`), limit(1)))
-            snapshot.docs.length > 0 ?
-                setContactsExist(true)
-                :
-                setContactsExist(false)
-        })()
+        const queryToCheck = query(collection(db, `users/${currentUser.uid}/contacts`), limit(1))
+        const unsubscribe = onSnapshot(queryToCheck, funcToCheck)
+        return unsubscribe
     }, [])
 
     return (

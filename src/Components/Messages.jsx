@@ -2,22 +2,22 @@ import React, { useState, useEffect } from 'react'
 import './Messages.css'
 import { db } from '../Firebase'
 import { useOtherPersonContext } from '../OtherPersonContext'
-import { getDocs, collection, onSnapshot, query, orderBy } from 'firebase/firestore'
+import { collection, onSnapshot, query, orderBy } from 'firebase/firestore'
 
 export default function Messages() {
 
     const { other } = useOtherPersonContext()
 
-    useEffect(() => {
-        // (async () => {
-        const q = query(collection(db, `${other.chatID}`), orderBy('date', 'asc'))
-        const unsubscribe = onSnapshot(q, (snapshot) => setMessages(snapshot.docs))
-        // })()
-
-        return unsubscribe
-    }, [])
-
     const [messages, setMessages] = useState([])
+
+    useEffect(() => {
+        const q = query(collection(db, `${other.chatID}`), orderBy('date', 'asc'))
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            setMessages(snapshot.docs)
+        })
+        
+        return unsubscribe
+    }, [other.chatID])
 
     return (
         <div className='messages'>

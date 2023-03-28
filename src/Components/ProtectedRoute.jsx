@@ -6,7 +6,7 @@ export default function ProtectedRoute({ children }) {
     const { currentUser } = useUserDataContext()
 
     if (currentUser) {
-        return children 
+        return children
     }
     else {
         return <Navigate to='/' />

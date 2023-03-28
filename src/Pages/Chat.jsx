@@ -35,13 +35,13 @@ export default function Chat() {
 
   return (
     <OtherPersonContextProvider>
-      <div>
+      {/* <div> */}
         <Navbar login={true} />
         <main className='chatPage'>
           <Contacts />
           <ChatWindow />
         </main>
-      </div>
+      {/* </div> */}
     </OtherPersonContextProvider>
   )
 }

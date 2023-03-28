@@ -38,6 +38,7 @@ export function UserDataContextProvider({ children }) {
     }
 
     function logout() {
+        localStorage.setItem('c4cUser', JSON.stringify(null))
         return signOut(auth)
     }
 

@@ -15,7 +15,6 @@ export default function Navbar({ login }) {
     const [menu, setMenu] = useState(false)
 
     function handleLogout() {
-        localStorage.setItem('c4cUser', JSON.stringify(null))
         logout()
     }
 
