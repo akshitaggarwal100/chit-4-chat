@@ -7,10 +7,14 @@ export function ThemeContextProvider({ children }) {
     const colors = {
         light: {
             BG: '#fafafa',
+            FG: '#ffcc33',
+            FG2: '#cfdbd5',
             text: '#202023'
         },
         dark: {
             BG: '#202023',
+            FG: '#ffcc33',
+            FG2: '#343a40',
             text: 'white'
         }
     }

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import './Contacts.css'
 import { useThemeContext } from '../ThemeContext'
 import { useUserDataContext } from '../AuthContext'
 import Search from './Search'
 import ContactList from './ContactList'
 import NoContacts from './NoContacts'
-import './Contacts.css'
 import { db } from '../Firebase'
 import { collection, query, limit, onSnapshot } from 'firebase/firestore'
 

@@ -1,0 +1,35 @@
+.messages {
+    padding: 0.5rem;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    margin-bottom: 0.5rem;
+}
+
+.messageText {
+    max-width: 90%;
+    padding: 0.5rem;
+}
+
+.right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.left {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.rightText {
+    border-radius: 14px 14px 0 14px;
+}
+
+.leftText {
+    border-radius: 14px 14px 14px 0;
+}

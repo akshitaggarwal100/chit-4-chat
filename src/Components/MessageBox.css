@@ -1,11 +1,19 @@
 .messageBox {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 4rem;
+    border-bottom: 2px solid #ffcc33;
+    border-radius: 8px;
+    transition: 0.3s background-color;
 }
 
 .messageInput {
     background-color: transparent;
     border: 0;
+    font-family: 'Poppins', sans-serif;
+    padding-left: 1rem;
+    font-size: 1.5rem;
+    /* outline-color: transparent; */
+    transition: 0.2s color;
 }
 
 .sendBtn {

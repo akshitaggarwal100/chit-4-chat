@@ -1,4 +1,5 @@
 import React from 'react'
+import './NoContacts.css'
 import { TiContacts } from 'react-icons/ti'
 
 export default function NoContacts() {

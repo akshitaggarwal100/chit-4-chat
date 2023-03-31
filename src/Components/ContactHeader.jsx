@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import './ContactHeader.css'
 import { useThemeContext } from '../ThemeContext'
 import { useOtherPersonContext } from '../OtherPersonContext'
 import { BsFillFilePersonFill } from 'react-icons/bs'

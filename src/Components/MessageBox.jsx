@@ -5,7 +5,7 @@ import { db } from '../Firebase'
 import { useThemeContext } from '../ThemeContext'
 import { useUserDataContext } from '../AuthContext'
 import { useOtherPersonContext } from '../OtherPersonContext'
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 
 export default function MessageBox() {
     const { currentUser } = useUserDataContext()
@@ -14,14 +14,10 @@ export default function MessageBox() {
 
     function handleMessageSend(e) {
         e.preventDefault()
-        // const dateObj = new Date()
-        // const date = `${dateObj.getDate()}-${dateObj.getMonth()}-${dateObj.getFullYear()}`
-        // const time = `${dateObj.getHours()}Hr ${dateObj.getMinutes()}Min ${dateObj.getSeconds()}Sec`
         const messageObj = {
             from: currentUser.uid,
             text: e.target.message.value,
-            // time: firebase.database.ServerValue.TIMESTAMP,
-            date: new Date()
+            time: serverTimestamp()
         }
         addDoc(collection(db, `${other.chatID}`), messageObj)
         e.target.message.value = ''
@@ -33,8 +29,15 @@ export default function MessageBox() {
             className='messageBox'
             style={{ backgroundColor: dark ? colors.dark.BG : colors.light.BG }}
         >
-            <input name='message' type='text' className='messageInput' placeholder='Enter Mesaage' />
-            <button className='sendBtn'>
+            <input
+                name='message'
+                type='text'
+                style={{ color: dark ? colors.dark.text : colors.light.text }}
+                className='messageInput'
+                placeholder='Enter Mesaage' />
+            <button
+                style={{ color: dark ? colors.dark.text : colors.light.text }}
+                className='sendBtn'>
                 <BiSend />
             </button>
         </form>
