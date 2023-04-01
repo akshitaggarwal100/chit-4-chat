@@ -1,0 +1,19 @@
+.right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.left {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.rightText {
+    border-radius: 14px 14px 0 14px;
+}
+
+.leftText {
+    border-radius: 14px 14px 14px 0;
+}

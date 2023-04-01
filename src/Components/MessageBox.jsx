@@ -30,6 +30,7 @@ export default function MessageBox() {
             style={{ backgroundColor: dark ? colors.dark.BG : colors.light.BG }}
         >
             <input
+                required
                 name='message'
                 type='text'
                 style={{ color: dark ? colors.dark.text : colors.light.text }}

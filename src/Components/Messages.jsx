@@ -1,18 +1,26 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './Messages.css'
+import Message from './Message'
 import { db } from '../Firebase'
-import { useThemeContext } from '../ThemeContext'
 import { useOtherPersonContext } from '../OtherPersonContext'
+import { useThemeContext } from '../ThemeContext'
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore'
-import { useUserDataContext } from '../AuthContext'
+
 
 export default function Messages() {
 
     const { dark, colors } = useThemeContext()
-    const { currentUser } = useUserDataContext()
     const { other } = useOtherPersonContext()
 
     const [messages, setMessages] = useState([])
+
+    // function todaysDate() {
+    //     const dateObj = new Date()
+    //     const date = dateObj.getDate() + '/' + dateObj.getMonth() + '/' + dateObj.getFullYear()
+    //     return date
+    // }
+
+    // const [date, setDate] = useState(null)
 
     useEffect(() => {
         const q = query(collection(db, `${other.chatID}`), orderBy('time', 'asc'))
@@ -23,34 +31,33 @@ export default function Messages() {
         return unsubscribe
     }, [other.chatID])
 
+    let date = false
+
     return (
         <div className='messages'>
             {messages.map((message) => {
                 const messageData = message.data()
+
+                const dateTime = messageData.time && messageData.time.toDate()
+                const messageDate = dateTime && dateTime.getDate() + '/' + (dateTime.getMonth() + 1) + '/' + dateTime.getFullYear()
+                let flag = false
+
+                if (date !== messageDate) {
+                    date = messageDate
+                    flag = true
+                }
+
                 return (
-                    <div
-                        key={message.id}
-                        className={`message ${messageData.from === currentUser.uid ? 'right' : 'left'}`}
-                    >
-                        <p
-                            className={`messageText ${messageData.from === currentUser.uid ? 'rightText' : 'leftText'}`}
-                            style={{
-                                backgroundColor: dark ?
-                                    (messageData.from === currentUser.uid ?
-                                        colors.dark.FG
-                                        :
-                                        colors.dark.FG2)
-                                    :
-                                    (messageData.from === currentUser.uid ?
-                                        colors.light.FG
-                                        :
-                                        colors.light.FG2),
-                                color: messageData.from === currentUser.uid && colors.light.text
-                            }}
-                        >
-                            {messageData.text}
-                        </p>
-                    </div>
+                    <React.Fragment key={message.id}>
+                        {flag &&
+                            <div
+                                className='date'
+                                style={{ backgroundColor: dark ? colors.dark.FG3 : colors.light.FG3 }}
+                            >
+                                {messageDate}
+                            </div>}
+                        <Message message={message} messageData={messageData} />
+                    </React.Fragment>
                 )
             })}
         </div>

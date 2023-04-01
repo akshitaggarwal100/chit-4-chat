@@ -9,12 +9,14 @@ export function ThemeContextProvider({ children }) {
             BG: '#fafafa',
             FG: '#ffcc33',
             FG2: '#cfdbd5',
+            FG3: '#f8f9fa',
             text: '#202023'
         },
         dark: {
             BG: '#202023',
             FG: '#ffcc33',
             FG2: '#343a40',
+            FG3: '#9a8c98',
             text: 'white'
         }
     }

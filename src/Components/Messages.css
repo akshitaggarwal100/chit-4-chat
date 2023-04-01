@@ -3,9 +3,11 @@
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .message {
+    width: 100%;
     margin-bottom: 0.5rem;
 }
 
@@ -14,22 +16,12 @@
     padding: 0.5rem;
 }
 
-.right {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-}
-
-.left {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-}
-
-.rightText {
-    border-radius: 14px 14px 0 14px;
-}
-
-.leftText {
-    border-radius: 14px 14px 14px 0;
+.date {
+    margin-bottom: 0.5rem;
+    /* background-color: #ffcc33; */
+    width: 6.5rem;
+    padding: 0.2rem 0;
+    text-align: center;
+    /* color: #202023; */
+    border-radius: 8px;
 }
