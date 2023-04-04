@@ -1,0 +1,49 @@
+.contact {
+    text-decoration: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    transition: 0.3s background-color, 0.1s color;
+}
+
+.naContact_dm {
+    background-color: #212529;
+}
+
+.naContact_dm:hover {
+    background-color: #2d2d33;
+}
+
+.aContact_dm {
+    background-color: #343a40;
+}
+
+.naContact_lm {
+    background-color: #cfdbd5;
+}
+
+.naContact_lm:hover {
+    background-color: #cec3c3;
+}
+
+.aContact_lm {
+    background-color: #b3b3b3;
+}
+
+.userPhoto {
+    width: 35px;
+    aspect-ratio: 3 / 4;
+    border-radius: 5px;
+    margin-right: 0.8rem;
+    object-fit: cover;
+    object-position: center;
+}
+
+.contactName {
+    font-size: 1.3rem;
+    font-weight: 500;
+}

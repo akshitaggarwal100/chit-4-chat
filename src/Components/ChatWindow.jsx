@@ -7,7 +7,7 @@ import NoMessages from './NoMessages'
 import { useThemeContext } from '../ThemeContext'
 import { useOtherPersonContext } from '../OtherPersonContext'
 
-export default function ChatWindow() {
+export default function ChatWindow({ setShowWindow }) {
   const { dark } = useThemeContext()
   const { other } = useOtherPersonContext()
 
@@ -16,7 +16,7 @@ export default function ChatWindow() {
       {
         other.chatID !== 0 ?
           <section className={`chatWindow ${dark ? 'darkSection' : 'lightSection'}`}>
-            <ContactHeader />
+            <ContactHeader setShowWindow={setShowWindow} />
             <Messages />
             <MessageBox />
           </section>

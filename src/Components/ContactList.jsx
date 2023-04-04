@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react'
+import Contact from './Contact'
 import './ContactList.css'
-import { BsFillFilePersonFill } from 'react-icons/bs'
 import { db } from '../Firebase'
 import { getDoc, collection, doc, deleteDoc, onSnapshot } from 'firebase/firestore'
 import { useUserDataContext } from '../AuthContext'
-import { useOtherPersonContext } from '../OtherPersonContext'
-import { useThemeContext } from '../ThemeContext'
 
-export default function ContactList() {
+export default function ContactList({ mobile, setShowWindow }) {
     const [contacts, setContacts] = useState([])
-    const { other, changeOther } = useOtherPersonContext()
+
     const { currentUser } = useUserDataContext()
-    const { dark } = useThemeContext()
 
     async function fetchContacts(snapshot) {
         let contactsArray = []
@@ -38,40 +35,26 @@ export default function ContactList() {
     }
 
     useEffect(() => {
-
         // fetching all contacts
         const contactsRef = collection(db, `users/${currentUser.uid}/contacts`)
         const unsubscribe = onSnapshot(contactsRef, fetchContacts)
 
-        return unsubscribe
+        return () => {
+            unsubscribe()
+        }
     }, [])
-
-    function changeActiveContact(contact) {
-        changeOther(contact)
-    }
 
     return (
         <div className='contactsList'>
             {
-                contacts?.map((contactData) => {
-                    const contact = contactData.data
-
+                contacts.map((contactData) => {
                     return (
-                        <div
-                            onClick={() => changeActiveContact(contactData)}
-                            key={contact.id}
-                            className={`contact ${contactData.chatID === other.chatID ? dark ? 'aContact_dm' : 'aContact_lm' : dark ? 'naContact_dm' : 'naContact_lm'}`}
-                        >
-                            {
-                                contact.photoURL ?
-                                    <img className='userPhoto' src={contact.photoURL} />
-                                    :
-                                    <div className='defaultPhoto'>
-                                        <BsFillFilePersonFill />
-                                    </div>
-                            }
-                            <p className='contactName'>{contact.name}</p>
-                        </div>
+                        <Contact
+                            key={contactData.chatID}
+                            contactData={contactData}
+                            mobile={mobile}
+                            setShowWindow={setShowWindow}
+                        />
                     )
                 })
             }

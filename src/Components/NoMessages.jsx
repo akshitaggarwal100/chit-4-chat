@@ -4,7 +4,7 @@ import { useThemeContext } from '../ThemeContext'
 import { BiMessageSquareDetail } from 'react-icons/bi'
 
 export default function NoMessages() {
-    const { dark, colors } = useThemeContext()
+    const { dark } = useThemeContext()
 
     return (
         <div className={`noMessages ${dark ? 'darkSection' : 'lightSection'}`}>

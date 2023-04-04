@@ -20,7 +20,6 @@
 
 .four {
     background: linear-gradient(135deg, #ffb347, #ffcc33);
-    /* background: linear-gradient(to right, #4568DC, #B06AB3); */
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;

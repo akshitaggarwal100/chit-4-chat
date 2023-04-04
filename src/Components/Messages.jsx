@@ -14,14 +14,6 @@ export default function Messages() {
 
     const [messages, setMessages] = useState([])
 
-    // function todaysDate() {
-    //     const dateObj = new Date()
-    //     const date = dateObj.getDate() + '/' + dateObj.getMonth() + '/' + dateObj.getFullYear()
-    //     return date
-    // }
-
-    // const [date, setDate] = useState(null)
-
     useEffect(() => {
         const q = query(collection(db, `${other.chatID}`), orderBy('time', 'asc'))
         const unsubscribe = onSnapshot(q, (snapshot) => {

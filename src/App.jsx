@@ -7,6 +7,8 @@ import ProtectedRoute from './Components/ProtectedRoute'
 import Chat from './Pages/Chat'
 import { ThemeContextProvider } from './ThemeContext'
 import { UserDataContextProvider } from './AuthContext'
+import ChatWindow from './Components/ChatWindow'
+import { OtherPersonContextProvider } from './OtherPersonContext'
 
 function App() {
   const location = useLocation()
@@ -16,9 +18,16 @@ function App() {
       <UserDataContextProvider>
         <AnimatePresence mode='wait'>
           <Routes key={location.key} location={location}>
-            <Route path='/' element={<Login />}></Route>
-            <Route path='/signup' element={<Signup />}></Route>
-            <Route path='/chat' element={<ProtectedRoute><Chat /></ProtectedRoute>}></Route>
+            <Route path='/' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route
+              path='/chat'
+              element={
+                <ProtectedRoute>
+                  <Chat />
+                </ProtectedRoute>
+              }>
+            </Route>
           </Routes>
         </AnimatePresence>
       </UserDataContextProvider>

@@ -12,16 +12,17 @@
     font-family: 'Poppins', sans-serif;
     padding-left: 1rem;
     font-size: 1.5rem;
-    /* outline-color: transparent; */
     transition: 0.2s color;
 }
 
 .sendBtn {
+    padding: 0.5rem;
     background-color: transparent;
     border: 0;
 }
 
 .sendBtn * {
+    border: 2px solid red;
     width: 100%;
     height: 100%;
 }

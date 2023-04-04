@@ -8,12 +8,13 @@ import NoContacts from './NoContacts'
 import { db } from '../Firebase'
 import { collection, query, limit, onSnapshot } from 'firebase/firestore'
 
-export default function Contacts() {
+export default function Contacts({ mobile, setShowWindow }) {
 
     const { dark } = useThemeContext()
     const { currentUser } = useUserDataContext()
 
     const [contactsExist, setContactsExist] = useState(false)
+
 
     function funcToCheck(snapshot) {
         snapshot.docs.length > 0 ?
@@ -25,7 +26,10 @@ export default function Contacts() {
     useEffect(() => {
         const queryToCheck = query(collection(db, `users/${currentUser.uid}/contacts`), limit(1))
         const unsubscribe = onSnapshot(queryToCheck, funcToCheck)
-        return unsubscribe
+
+        return () => {
+            unsubscribe()
+        }
     }, [])
 
     return (
@@ -33,7 +37,7 @@ export default function Contacts() {
             <Search />
             {
                 contactsExist ?
-                    <ContactList />
+                    <ContactList mobile={mobile} setShowWindow={setShowWindow} />
                     :
                     <NoContacts />
             }

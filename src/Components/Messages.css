@@ -6,22 +6,11 @@
     align-items: center;
 }
 
-.message {
-    width: 100%;
-    margin-bottom: 0.5rem;
-}
-
-.messageText {
-    max-width: 90%;
-    padding: 0.5rem;
-}
-
 .date {
     margin-bottom: 0.5rem;
-    /* background-color: #ffcc33; */
     width: 6.5rem;
     padding: 0.2rem 0;
     text-align: center;
-    /* color: #202023; */
     border-radius: 8px;
+    transition: 0.2s color, 0.3s background-color;
 }
