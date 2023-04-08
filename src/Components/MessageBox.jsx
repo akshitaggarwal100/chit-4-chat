@@ -13,19 +13,21 @@ export default function MessageBox() {
     const { dark, colors } = useThemeContext()
     const [msgLeftState, setMsgLeftState] = useState(0)
 
-    const senderRef = doc(db, `users/${currentUser.uid}/contacts/${other.data.id}`)
-    const receiverRef = doc(db, `users/${other.data.id}/contacts/${currentUser.uid}`)
-
     useEffect(() => {
+        const senderRef = doc(db, `users/${currentUser.uid}/contacts/${other.data.id}`)
+
         const unsubscribe = onSnapshot(senderRef, (senderDoc) => {
             setMsgLeftState(senderDoc.data().msgLeft)
         }, [])
 
         return () => { unsubscribe() }
-    }, [])
+    })
 
     async function handleMessageSend(e) {
         e.preventDefault()
+
+        const senderRef = doc(db, `users/${currentUser.uid}/contacts/${other.data.id}`)
+        const receiverRef = doc(db, `users/${other.data.id}/contacts/${currentUser.uid}`)
 
         if (msgLeftState && e.target.message.value) {
             const messageObj = {
