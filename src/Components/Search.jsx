@@ -51,8 +51,8 @@ export default function Search() {
 
         else {
             const chatID = IDgenerator()
-            const contactForCU = { id: contactID, chatID: chatID }
-            const contactForContact = { id: currentUser.uid, chatID: chatID }
+            const contactForCU = { id: contactID, chatID, msgLeft: 1 }
+            const contactForContact = { id: currentUser.uid, chatID, msgLeft: 1 }
 
             await setDoc(doc(db, `users/${currentUser.uid}/contacts`, contactID), contactForCU)
             setDoc(doc(db, `users/${contactID}/contacts`, currentUser.uid), contactForContact)

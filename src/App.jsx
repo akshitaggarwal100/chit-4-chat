@@ -7,8 +7,6 @@ import ProtectedRoute from './Components/ProtectedRoute'
 import Chat from './Pages/Chat'
 import { ThemeContextProvider } from './ThemeContext'
 import { UserDataContextProvider } from './AuthContext'
-import ChatWindow from './Components/ChatWindow'
-import { OtherPersonContextProvider } from './OtherPersonContext'
 
 function App() {
   const location = useLocation()

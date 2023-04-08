@@ -15,7 +15,7 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #ffb347, #ffcc33);
+    background-color: #827081;
 }
 
 body {
