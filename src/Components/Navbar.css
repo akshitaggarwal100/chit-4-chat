@@ -50,12 +50,13 @@
 }
 
 .menu {
+    z-index: 1;
     cursor: pointer;
     position: fixed;
     top: 3.3rem;
     right: 1rem;
-    background-color: transparent;
-    border: 2px solid #ffb347;
+    background-color: #ffb347;
+    border: 0;
     border-radius: 7px;
     font-size: 0.96rem;
     font-weight: 500;
