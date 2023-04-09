@@ -39,7 +39,7 @@ export default function MessageBox() {
 
             await addDoc(collection(db, `${other.chatID}`), messageObj)
             await setDoc(senderRef, { chatID: other.chatID, id: other.data.id, msgLeft: msgLeftState - 1 })
-            await setDoc(receiverRef, { chatID: other.chatID, id: currentUser.uid, msgLeft: msgLeftState === 2 ? 1 : 2 })
+            await setDoc(receiverRef, { chatID: other.chatID, id: currentUser.uid, msgLeft: 4 - (msgLeftState - 1) })
             setMsgLeftState(msgLeftState - 1)
 
             e.target.message.value = ''
@@ -58,7 +58,7 @@ export default function MessageBox() {
                 type='text'
                 style={{ color: dark ? colors.dark.text : colors.light.text }}
                 className='messageInput'
-                placeholder='Enter Mesaage' />
+                placeholder='Enter Message' />
             <button
                 style={{ color: dark ? colors.dark.text : colors.light.text }}
                 className='sendBtn'>

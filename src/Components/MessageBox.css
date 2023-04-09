@@ -1,5 +1,5 @@
 .messageBox {
-    width: calc(100vw - 4rem);
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 4rem;
     border-bottom: 2px solid #ffcc33;
@@ -25,4 +25,10 @@
 .sendBtn * {
     width: 70%;
     height: 70%;
+}
+
+@media (max-width: 830px) {
+    .messageBox {
+        width: calc(100vw - 4rem);
+    }
 }
