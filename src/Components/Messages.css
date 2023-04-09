@@ -14,3 +14,9 @@
     border-radius: 8px;
     transition: 0.2s color, 0.3s background-color;
 }
+
+@media (max-width: 500px) {
+    .date {
+        font-size: 0.9rem;
+    }
+}

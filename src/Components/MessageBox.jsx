@@ -32,6 +32,7 @@ export default function MessageBox() {
         if (msgLeftState && e.target.message.value) {
             const messageObj = {
                 from: currentUser.uid,
+                to: other.data.id,
                 text: e.target.message.value,
                 time: serverTimestamp()
             }

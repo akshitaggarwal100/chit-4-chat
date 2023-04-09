@@ -28,3 +28,9 @@
 .leftText {
     border-radius: 14px 14px 14px 0;
 }
+
+@media (max-width: 500px) {
+    .messageText {
+        font-size: 0.9rem;
+    }
+}
