@@ -17,6 +17,12 @@ export default function Login() {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
+    useEffect(() => {
+        localStorage.getItem('c4cUser') &&
+        navigate('/chat')
+
+    }, [])
+
     async function handleLogin(e) {
         e.preventDefault()
         setLoading(true)
