@@ -1,5 +1,5 @@
 .home {
-    height: calc(100vh - 3rem);
+    height: calc(100svh - 3rem);
     background-image: linear-gradient(to left, rgba(15, 15, 15, 1), rgba(247, 247, 247, 0)), url('../Assets/home-image.jpg');
     background-size: cover;
     background-position: center;
