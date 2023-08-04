@@ -99,7 +99,7 @@ export default function Signup() {
             Sign up with <FcGoogle />
           </button>
 
-          <p>Have an account? <Link to='/'>Log in</Link></p>
+          <p>Have an account? <Link to='/login'>Log in</Link></p>
         </motion.form>
       </main>
     </div>
