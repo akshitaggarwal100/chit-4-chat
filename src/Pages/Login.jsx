@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useUserDataContext } from '../AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { json, useNavigate } from 'react-router-dom'
 import './Form.css'
 import { BiError } from 'react-icons/bi'
 import { motion } from 'framer-motion'
@@ -18,9 +18,8 @@ export default function Login() {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        localStorage.getItem('c4cUser') &&
+        JSON.parse(localStorage.getItem('c4cUser')) &&
         navigate('/chat')
-
     }, [])
 
     async function handleLogin(e) {
